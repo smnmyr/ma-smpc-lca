@@ -32,6 +32,7 @@ import socket
 import urllib.request
 import urllib.error
 import ssl
+from pathlib import Path
 from datetime import datetime
 from typing import List, Tuple, Optional, Dict, Any, Union
 import warnings
@@ -1318,6 +1319,9 @@ def main():
         json_filename = 'local-results/' + f"matrix_network_benchmark_{mode_suffix}_{cpu_name}_{gpu_name_safe}.json"
     else:
         json_filename = 'local-results/' +  f"matrix_network_benchmark_{mode_suffix}_{cpu_name}.json"
+
+    # Create output directory if not exists
+    Path("local-results/").mkdir(parents=True, exist_ok=True)
     
     # Load or initialize benchmark data
     benchmark_data = load_progress(json_filename)
